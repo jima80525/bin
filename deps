@@ -1,0 +1,2 @@
+omverse -b /mnt/wormhole`pwd` /mnt/wormhole/home/jima/bin/mhdepends.py $*
+#omverse -b /mnt/wormhole`pwd` /mnt/wormhole/home/jima/bin/mhbuild.py $*

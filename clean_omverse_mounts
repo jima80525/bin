@@ -1,0 +1,20 @@
+#!/bin/bash
+################################
+# Force cleanup of the omverse #
+# 2012-06-07 - GJH             #
+################################
+echo /dev/pts
+sudo umount -f /opt/omtools/omverse/dev/pts -l
+echo /dev/shm
+sudo umount -f /opt/omtools/omverse/dev/shm -l
+echo /proc
+sudo umount -f /opt/omtools/omverse/proc -l
+echo /sys
+sudo umount -f /opt/omtools/omverse/sys -l
+echo /opt/omtools
+sudo umount -f /opt/omtools/omverse/opt/omtools -l
+echo /mnt/wormhole
+sudo umount -f /opt/omtools/omverse/mnt/wormhole -l
+echo /tmp
+sudo umount -f /opt/omtools/omverse/tmp -l
+sudo rm /var/run/omverse.*

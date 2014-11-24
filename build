@@ -1,0 +1,3 @@
+#omverse -b /mnt/wormhole`pwd` /mnt/wormhole/home/jima/bin/omdepends.py $*
+repo=`gitpath.py`
+omverse -b /mnt/wormhole`pwd` /mnt/wormhole$repo/build-tools/sebu_build.py $*
