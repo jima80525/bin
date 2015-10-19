@@ -1,6 +1,6 @@
 #!/bin/bash
 # script does ack on a string and opens a new tab in gvim for each file with matches
-/bin/grep -r --exclude=tt.sh -l $* * > tt.sh
+/bin/grep -ri --exclude=tt.sh -l $* * > tt.sh
 # first prepend the command to open vim.  not pretty
 cat tt.sh | sed -e 's:^:/usr/bin/vi --servername GVIM --remote-tab :' >> tttemp
 # now we need to work around a bug (?) in gvim where calling --remote-tab several times
@@ -13,6 +13,6 @@ head -n -1 tttemp2 > tt.sh
 #  remove temp files
 rm tttemp*
 chmod +x tt.sh
-#. tt.sh
-#rm tt.sh
+. tt.sh
+rm tt.sh
 
