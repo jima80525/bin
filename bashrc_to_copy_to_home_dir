@@ -4,8 +4,6 @@
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
-
 
 # User specific aliases and functions
 alias la='ls -a'
@@ -15,42 +13,15 @@ alias ...='cd ../..'
 alias ack=ack-grep
 alias vi=gvim
 alias vir='vi --remote-tab'
-alias ssvn='~/ssvn/smartsvn-7_5_3/bin/smartsvn.sh &'
-alias bcg='cd ../matterhorn_codegen;ombuild install;cd -'
-alias omdc='ombuild distclean'
-alias omcl='ombuild clean'
-#alias omhsl='omco -propertyfile /mnt/wormhole/home/jima/work/9310/build.conf'
-#alias ommoe='omco -propertyfile /mnt/wormhole/home/jima/work/2084/build.conf'
-#alias ommce='omco -propertyfile /mnt/wormhole/home/jima/work/3081/build.conf'
-#alias omnet='omco -propertyfile /mnt/wormhole/home/jima/work/NetraEVM/Omons/trunk/build.conf'
-#alias omx='omco -propertyfile /mnt/wormhole/home/jima/work/PC_x86/build.conf'
-alias oma='ombuild all'
-alias omco='ombuild configure'
-alias omb='ombuild build'
-alias omi='ombuild install'
-alias omp='ombuild precache'
-alias omf='ombuild fwupdate'
-alias treea='tree -a -I *.swp'
-#alias winterparkr='sudo mount -t nfs winterpark:release /mnt/winterpark/release -o user=jim.anderson,domain=PELCOUSA'
-#alias winterparkr='sudo mount -t nfs winterpark.pelco.org:release /mnt/winterpark/release'
 alias winterparkr='sudo mount -t cifs //winterpark.pelco.org/release /mnt/winterpark/release -o username=jim.anderson,domain=nam'
-#alias winterparkp='sudo mount -t nfs winterpark.pelco.org:public /mnt/winterpark/public'
 alias winterparkp='sudo mount -t cifs //winterpark.pelco.org/public /mnt/winterpark/public -o username=jim.anderson,domain=nam'
 alias wpr=winterparkr
 alias wpp=winterparkp
-function togw { sshpass -p pelco scp $@ pelco@10.220.229.130:/home/pelco/jima; }
-function gw { sshpass -p pelco ssh pelco@10.220.229.130; }
 function todopey { sshpass -p pel2899100 scp $@ root@10.220.230.9:/root/jima; }
 function dopey { sshpass -p pel2899100 ssh root@10.220.230.9; }
-function go { sshpass -p pel2899100 ssh root@$1; }
-function to { sshpass -p pel2899100 scp $2 root@$1:/root/jima; }
-function smeld { svn diff $1 --diff-cmd meld; }
-function clean { sudo rm -rf ./.build_out ./.publish ./results ./.scratch ./ivy-report* ./pom.xml ./__Build_*/ .ivy/ /opt/omtools/omverse/root/.ivy2; }
-function omconf { ombuild -Dboard=A0 -propertyfile /mnt/wormhole/home/jima/work/omons/products/$1/build.conf configure; }
 function dotstat { git status .; }
-function mygrep { grep -RIn $1 *; }
 
-PATH=$HOME/tools/arm-2009q3/bin:$PATH:$HOME/bin:/opt/omtools/bin:/sbin:$HOME/Dropbox/gitscripts
+PATH=$PATH:$HOME/bin:/opt/omtools/bin:/sbin
 export PATH
 
 # jha - \t inserts the time
@@ -62,5 +33,4 @@ PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME} ${BRANCH}: ${PWD}\007"'
 export PROMPT_COMMAND
 #PS1='\[\e[1;32m\][\u@\h \W]\$\[\e[0m\] '
 
-export SVN_EDITOR=vi
 fortune
