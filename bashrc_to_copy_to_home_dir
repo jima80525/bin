@@ -29,7 +29,9 @@ export PATH
 # PS1 sets the bash prompt
 PS1='\t \[\e[1;32m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[1;32m\]\$\[\e[m\] \[\e[1;37m\]'
 # PROMPT_COMMAND is run before the prompt is displayed - echo -ne  sets the window title
-PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME} ${BRANCH}: ${PWD}\007"'
+#PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME} ${BRANCH}: ${PWD}\007"'
+# the previous line does user@hostname dir.  following line does just PWD
+PROMPT_COMMAND='echo -ne "\033]0;${PWD}\007"'
 export PROMPT_COMMAND
 #PS1='\[\e[1;32m\][\u@\h \W]\$\[\e[0m\] '
 
