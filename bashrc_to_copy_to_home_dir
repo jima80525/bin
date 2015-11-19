@@ -1,5 +1,8 @@
 # .bashrc
 
+# skip this file for non-interactive sessions
+[ -z "$PS1" ] && return
+
 # Source global definitions
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
