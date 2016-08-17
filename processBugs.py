@@ -10,7 +10,7 @@ def untar(args):
         tar.close()
         # JHA fixup a bug in bugreport which is producing /var/calib/color with
         # bad permissions
-        os.chmod('bugreport/var/calib/color', stat.S_IRWXU)
+        #os.chmod('bugreport/var/calib/color', stat.S_IRWXU)
 
 
         # part the ipconfig.txt file to get the ip address and rename the dir
