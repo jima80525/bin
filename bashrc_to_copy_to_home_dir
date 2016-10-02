@@ -24,6 +24,11 @@ function dotstat { git status .; }
 PATH=$PATH:$HOME/bin:/opt/omtools/bin:/sbin
 export PATH
 
+# set up env for virtualenv wrapper
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Devel
+source /usr/local/bin/virtualenvwrapper.sh
+
 # jha - \t inserts the time
 #BRANCH=`git branch | grep "^\*" | cut -f2 -d\ `
 # PS1 sets the bash prompt
