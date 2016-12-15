@@ -1,5 +1,24 @@
 set up firefox - use firefox sync under tools menu, tabmixplus and lastpass
 ----
+sudo apt-get install git
+git config --global user.email jima80525@gmail.com
+git config --global user.email james.anderson@ca.com
+git config --global user.name "Jim Anderson"
+git config --global diff.tool meld
+git config --global difftool.prompt false
+----
+install ssh key on github
+ssh-keygen -t rsa -b 4096 -C "jima.coding@gmail.com"
+cat .ssh/id_rsa.pub
+----
+git clone git@github.com:jima80525/bin.git
+git clone git@github.com:jima80525/vimconfig.git
+mv vimconfig .vim
+cp .vim/vimrc_move_to_home_dir .vimrc
+
+git clone git@github.com:jima80525/pyres.git
+git clone git@github.com:jima80525/audio-book-cde.git
+----
 fix sudoers file
 sudo visudo  (had to use "pkexec vi /etc/sudoers" last time)
 jima  ALL = NOPASSWD: ALL
@@ -12,6 +31,7 @@ sudo apt-get install meld
 sudo apt-get install ack-grep
 sudo apt-get install tree
 sudo apt-get install vim-gtk
+(sudo yum install vim-X11 vim-enhanced on centos7)
 ----
 set up for audiobook-cde
 sudo apt-get install abcde
@@ -19,27 +39,9 @@ sudo apt-get install lame
 sudo apt-get install eyeD3
 ----
 
-sudo apt-get install git
-git config --global user.email jima80525@gmail.com
-git config --global user.email james.anderson@ca.com
-git config --global user.name "Jim Anderson"
-git config --global diff.tool meld
-git config --global difftool.prompt false
-----
-install ssh key on github
-ssh-keygen -t rsa -b 4096 -C "jima.coding@gmail.com"
-cat .ssh/id_rsa.pub
-----
 sudo pip install flake8
 sudo pip install pylint
 sudo pip install pep8
-----
-git clone git@github.com:jima80525/vimconfig.git
-git clone git@github.com:jima80525/bin.git
-cp .vim/vimrc_move_to_home_dir .vimrc
-
-git clone git@github.com:jima80525/pyres.git
-git clone git@github.com:jima80525/audio-book-cde.git
 ----
 set up terminal window
 edit->Profile Preferences
