@@ -1,0 +1,95 @@
+set up firefox - use firefox sync under tools menu, tabmixplus and lastpass
+----
+fix sudoers file
+sudo visudo  (had to use "pkexec vi /etc/sudoers" last time)
+jima  ALL = NOPASSWD: ALL
+# note that the above line MUST BE THE LAST LINE IN THE FILE
+# http://maestric.com/doc/unix/ubuntu_sudo_without_password
+----
+(on centos sudo yum install epel-release)
+
+sudo apt-get install meld
+sudo apt-get install ack-grep
+sudo apt-get install tree
+sudo apt-get install vim-gtk
+----
+set up for audiobook-cde
+sudo apt-get install abcde
+sudo apt-get install lame
+sudo apt-get install eyeD3
+----
+
+sudo apt-get install git
+git config --global user.email jima80525@gmail.com
+git config --global user.email james.anderson@ca.com
+git config --global user.name "Jim Anderson"
+git config --global diff.tool meld
+git config --global difftool.prompt false
+----
+install ssh key on github
+ssh-keygen -t rsa -b 4096 -C "jima.coding@gmail.com"
+cat .ssh/id_rsa.pub
+----
+sudo pip install flake8
+sudo pip install pylint
+sudo pip install pep8
+----
+git clone git@github.com:jima80525/vimconfig.git
+git clone git@github.com:jima80525/bin.git
+cp .vim/vimrc_move_to_home_dir .vimrc
+
+git clone git@github.com:jima80525/pyres.git
+git clone git@github.com:jima80525/audio-book-cde.git
+----
+set up terminal window
+edit->Profile Preferences
+	uncheck use system fixed font - change to monospaced 14
+	check use custom size - 80 x 100
+
+--------------------------------------------------------------------------------
+old stuff
+--------
+----
+minicom - turn off hardware flow control under serial port settings
+turn off localecho
+----
+setup nfs booting:
+in /export
+sudo ln -s /home/jima/work/__Buildxxx/ 8280
+in /tftpboot
+sudo ln -s /home/jima/work/__Buildxxx/binaries 8280
+sudo apt-get install nfs-server
+sudo apt-get install xinetd tftpd tftp -y
+
+add to /etc/exports:
+/export *(rw,sync,no_subtree_check,no_root_squash)
+/home/jima/work/__Build_9081+A1__ *(rw,sync,no_subtree_check,no_root_squash)
+
+
+----
+set up tftp
+sudo vi /etc/xinetd.d/tftp
+service tftp
+{
+   protocol = udp
+   port = 69
+   socket_type = dgram
+   wait = yes
+   user = nobody
+   server = /usr/sbin/in.tftpd
+   server_args = tftpboot -s
+   disable = no
+}
+
+Now let’s change the ownership of the directory:
+
+sudo mkdir /tftpboot
+sudo chown -R nobody:nobody /tftpboot
+sudo chmod -R 777 /tftpboot
+
+and start the TFTP service:
+
+sudo service xinetd stop
+sudo service xinetd start
+
+
