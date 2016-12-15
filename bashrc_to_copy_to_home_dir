@@ -23,6 +23,8 @@ alias wpp=winterparkp
 function todopey { sshpass -p pel2899100 scp $@ root@10.220.230.9:/root/jima; }
 function dopey { sshpass -p pel2899100 ssh root@10.220.230.9; }
 function dotstat { git status .; }
+function rlog { sshpass -p t3sti9 ssh root@$@; }
+function rcp { sshpass -p t3sti9 scp $@; }
 
 PATH=$PATH:$HOME/bin:/opt/omtools/bin:/sbin
 export PATH
@@ -44,3 +46,4 @@ export PROMPT_COMMAND
 #PS1='\[\e[1;32m\][\u@\h \W]\$\[\e[0m\] '
 
 fortune
+source ~/bin/git-completion.bash
