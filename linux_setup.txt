@@ -26,6 +26,10 @@ jima  ALL = NOPASSWD: ALL
 # http://maestric.com/doc/unix/ubuntu_sudo_without_password
 ----
 (on centos sudo yum install epel-release)
+(on centos get proper version of cmake)
+	sudo yum install glibc.i686
+	then down 3.0.2 version of cmake and install manually. 
+
 
 sudo apt-get install meld
 sudo apt-get install ack-grep
