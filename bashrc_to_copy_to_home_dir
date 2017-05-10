@@ -25,6 +25,8 @@ function dopey { sshpass -p pel2899100 ssh root@10.220.230.9; }
 function dotstat { git status .; }
 function rlog { sshpass -p t3sti9 ssh root@$@; }
 function rcp { sshpass -p t3sti9 scp $@; }
+function showtool { git difftool $1^ $1; }
+function showfile { git difftool $1^ $1 -- $2; }
 
 PATH=$PATH:$HOME/bin:/opt/omtools/bin:/sbin
 export PATH
