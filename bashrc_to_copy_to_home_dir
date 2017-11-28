@@ -18,6 +18,9 @@ alias vi=gvim
 alias vir='vi --remote-tab'
 alias winterparkr='sudo mount -t cifs //winterpark/release /mnt/winterpark/release -o username=jim.anderson,domain=nam'
 alias winterparkp='sudo mount -t cifs //winterpark/public /mnt/winterpark/public -o username=jim.anderson,domain=nam'
+alias fileshare='sudo mount -t cifs //fileshare.dev.fco/Users /mnt/fileshare -oguest'
+
+function logenv { . /home/jima/working/logfiles/venv/bin/activate; export PATH=$PATH:/home/jima/working/logfiles:; }
 alias wpr=winterparkr
 alias wpp=winterparkp
 function todopey { sshpass -p pel2899100 scp $@ root@10.220.230.9:/root/jima; }
