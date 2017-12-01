@@ -35,8 +35,9 @@ PATH=$PATH:$HOME/bin:/opt/omtools/bin:/sbin
 export PATH
 
 # set up env for virtualenv wrapper
+export VIRTUALENV_PYTHON=/usr/bin/python3
 export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Devel
+export PROJECT_HOME=$HOME/coding
 source /usr/local/bin/virtualenvwrapper.sh
 
 # jha - \t inserts the time
