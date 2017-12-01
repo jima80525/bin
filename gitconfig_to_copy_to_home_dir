@@ -1,0 +1,23 @@
+[user]
+	email = jima80525@gmail.com
+	name = Jim Anderson
+[diff]
+	tool = meld
+[difftool]
+	prompt = false
+[alias]
+   ### diffing
+   d = difftool --no-prompt
+   m = mergetool --no-prompt
+   ds = difftool --no-prompt stash HEAD
+   laststash = diff stash@{0}^!
+   ### https://mikewest.org/2011/04/a-quick-git-vim-workflow-tip
+   fshow = ! sh -c 'git show --pretty="format:" --name-only $1 | grep -v "^$" | uniq | sed -e "s#^#`git rev-parse --show-toplevel`/#"' -
+   # http://gitimmersion.com/lab_11.html
+   ### Shorter commands
+   ### Misc
+   hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+   # Remote branch operations
+   pruneBranches = remote prune origin
+   deleteBranch = push origin --delete
+
