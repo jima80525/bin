@@ -56,6 +56,7 @@ ssh-keygen -t rsa -b 4096 -C "jima.coding@gmail.com"
 cat .ssh/id_rsa.pub
 ----
 git clone git@github.com:jima80525/bin.git
+cp bin/bashrc_to_copy_to_home_dir ~/.bashrc
 git clone git@github.com:jima80525/vimconfig.git
 mv vimconfig .vim
 cp .vim/vimrc_move_to_home_dir .vimrc
@@ -74,15 +75,19 @@ sudo pip install pylint
 sudo pip install pep8
 ----
 Apps to install
-slack (had to do sudo apt update and sudo apt dist-upgrade to get it working)
-remember the milk
-spotify
 scudcloud
-dropbox
+    sudo apt-add-repository -y ppa:rael-gc/scudcloud
+    sudo apt-get update
+    sudo apt-get install scudcloud 
+remember the milk 
+	note: fedora == intel, ubuntu == AMD
 
-clamscan
-virtualenv
-virtualenvwrapper
+use software manager for:
+   spotify
+   dropbox
+   clamscan
+   virtualenv
+   virtualenvwrapper
 
 --------------------------------------------------------------------------------
 old stuff
