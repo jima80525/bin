@@ -26,10 +26,18 @@ jima  ALL = NOPASSWD: ALL
 	then down 3.0.2 version of cmake and install manually. 
 
 
+----
 sudo apt-get install roxterm
 	change keyboard shortcuts 
 		- remove ctr-alt-t from launch terminal 
 		- add it for custom - roxterm
+
+config roxterm
+- select tango colour scheme
+- edit current profile to change size 80x50
+- preferences->configuration manager - set color scheme to tango
+
+----
 sudo apt-get install meld
 sudo apt-get install ack-grep
 sudo apt-get install tree
