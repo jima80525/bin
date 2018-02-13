@@ -8,10 +8,11 @@ Also see this page:
 http://kb.mozillazine.org/About:config_entries#Browser.
 
 
-browser. tabs. loadDivertedInBackground - TRUE
+browser.tabs.loadDivertedInBackground - TRUE
 With the Open Link in New Tab add-on, go to about:config and make sure that the value of "browser.link.open_newwindow" is 3. This has nothing to do with the specific option you use because I'm using the 2nd option, Open a link to a different site in a tab. 
 
-To set Bookmarks to open in a new tab, in about:config, set "browser.tabs.loadBookmarksInTabs" to true.
+To set Bookmarks to open in a new tab, in about:config, set "
+browser.tabs.loadBookmarksInTabs - true.
 
 ----
 fix sudoers file
@@ -34,7 +35,7 @@ sudo apt-get install roxterm
 
 config roxterm
 - select tango colour scheme
-- edit current profile to change size 80x50
+- edit current profile to change size 80x50 and font size to 12
 - preferences->configuration manager - set color scheme to tango
 
 ----
@@ -42,6 +43,7 @@ sudo apt-get install meld
 sudo apt-get install ack-grep
 sudo apt-get install tree
 sudo apt-get install vim-gtk
+sudo apt-get install cloc
 (sudo yum install vim-X11 vim-enhanced on centos7)
 ----
 sudo apt-get install git
@@ -128,6 +130,7 @@ Now let’s change the ownership of the directory:
 
 sudo mkdir /tftpboot
 sudo chown -R nobody:nobody /tftpboot
+# NOTE: on mint18.3 I only did nobody (without second nobody)
 sudo chmod -R 777 /tftpboot
 
 and start the TFTP service:
