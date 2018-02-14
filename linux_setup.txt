@@ -95,7 +95,9 @@ use software manager for:
 old stuff
 --------
 ----
+or gtkterm
 minicom - turn off hardware flow control under serial port settings
+115200-8-N-1
 turn off localecho
 ----
 setup nfs booting:
