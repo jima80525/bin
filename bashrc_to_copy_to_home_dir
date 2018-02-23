@@ -18,7 +18,7 @@ alias vi=gvim
 alias vir='vi --remote-tab'
 alias winterparkr='sudo mount -t cifs //winterpark/release /mnt/winterpark/release -o username=jim.anderson,domain=nam'
 alias winterparkp='sudo mount -t cifs //winterpark/public /mnt/winterpark/public -o username=jim.anderson,domain=nam'
-alias fileshare='sudo mount -t cifs //fileshare.dev.fco/Users /mnt/fileshare -oguest'
+alias fileshare='sudo mount -t cifs //fcfs1.pelco.org/Data /mnt/fcfs1 -o rw,user=sesa139183'
 
 function logenv { . /home/jima/working/logfiles/venv/bin/activate; export PATH=$PATH:/home/jima/working/logfiles:; }
 alias wpr=winterparkr
@@ -39,7 +39,8 @@ export VIRTUALENV_PYTHON=/usr/bin/python3
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/coding
 if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
-source /usr/local/bin/virtualenvwrapper.sh
+# source /usr/local/bin/virtualenvwrapper.sh
+source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 fi
 
 #BRANCH=`git branch | grep "^\*" | cut -f2 -d\ `
