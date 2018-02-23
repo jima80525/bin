@@ -103,14 +103,17 @@ turn off localecho
 setup nfs booting:
 in /export
 sudo ln -s /home/jima/work/__Buildxxx/ 8280
+or
+sudo mount --bind /home/jima/work/__Build_8360__ 8360
+(NOTE: bind is not persistent across boots)
+
 in /tftpboot
 sudo ln -s /home/jima/work/__Buildxxx/binaries 8280
 sudo apt-get install nfs-server
 sudo apt-get install xinetd tftpd tftp -y
 
 add to /etc/exports:
-/export *(rw,sync,no_subtree_check,no_root_squash)
-/home/jima/work/__Build_9081+A1__ *(rw,sync,no_subtree_check,no_root_squash)
+/export/8360 *(rw,sync,no_subtree_check,no_root_squash)
 
 
 ----
