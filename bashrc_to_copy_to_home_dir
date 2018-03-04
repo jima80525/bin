@@ -30,7 +30,13 @@ function rlog { sshpass -p t3sti9 ssh root@$@; }
 function rcp { sshpass -p t3sti9 scp $@; }
 function showtool { git difftool $1^ $1; }
 function showfile { git difftool $1^ $1 -- $2; }
-function runscript { export RUN_SCRIPT='foo'; script; }
+function runscript { 
+   export RUN_SCRIPT='foo'
+   script $1
+   cat $1 | perl -pe 's/\e([^\[\]]|\[.*?[a-zA-Z]|\].*?\a)//g' | col -b > $1-processed
+   mv $1-processed $1
+   unset RUN_SCRIPT
+}
 
 PATH=$PATH:$HOME/bin:/opt/omtools/bin:/sbin
 export PATH
@@ -64,7 +70,7 @@ if [ -z ${RUN_SCRIPT+x} ]; then
    # don't do fortune in scripts
    fortune
 else 
-   PS1='\w: '
+   PS1='[SCRIPT]\w: '
    PROMPT_COMMAND=' '
    export PROMPT_COMMAND
 fi
