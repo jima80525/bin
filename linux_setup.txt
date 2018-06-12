@@ -9,7 +9,7 @@ http://kb.mozillazine.org/About:config_entries#Browser.
 
 
 browser.tabs.loadDivertedInBackground - TRUE
-With the Open Link in New Tab add-on, go to about:config and make sure that the value of "browser.link.open_newwindow" is 3. This has nothing to do with the specific option you use because I'm using the 2nd option, Open a link to a different site in a tab. 
+With the Open Link in New Tab add-on, go to about:config and make sure that the value of "browser.link.open_newwindow" is 3. This has nothing to do with the specific option you use because I'm using the 2nd option, Open a link to a different site in a tab.
 
 To set Bookmarks to open in a new tab, in about:config, set "
 browser.tabs.loadBookmarksInTabs - true.
@@ -24,13 +24,13 @@ jima  ALL = NOPASSWD: ALL
 (on centos sudo yum install epel-release)
 (on centos get proper version of cmake)
 	sudo yum install glibc.i686
-	then down 3.0.2 version of cmake and install manually. 
+	then down 3.0.2 version of cmake and install manually.
 
 
 ----
 sudo apt-get install roxterm
-	change keyboard shortcuts 
-		- remove ctr-alt-t from launch terminal 
+	change keyboard shortcuts
+		- remove ctr-alt-t from launch terminal
 		- add it for custom - roxterm
 
 config roxterm
@@ -52,6 +52,9 @@ git config --global user.email james.anderson@ca.com
 git config --global user.name "Jim Anderson"
 git config --global diff.tool meld
 git config --global difftool.prompt false
+git config --global merge.tool meld
+git config --global merge.conflictstyle diff3
+git config --global mergetool.prompt false
 ----
 install ssh key on github
 ssh-keygen -t rsa -b 4096 -C "jima.coding@gmail.com"
@@ -80,8 +83,8 @@ Apps to install
 scudcloud
     sudo apt-add-repository -y ppa:rael-gc/scudcloud
     sudo apt-get update
-    sudo apt-get install scudcloud 
-remember the milk 
+    sudo apt-get install scudcloud
+remember the milk
 	note: fedora == intel, ubuntu == AMD
 
 use software manager for:
