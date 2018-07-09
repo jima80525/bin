@@ -44,6 +44,7 @@ sudo apt-get install ack-grep
 sudo apt-get install tree
 sudo apt-get install vim-gtk
 sudo apt-get install cloc
+sudo apt install ncdu
 (sudo yum install vim-X11 vim-enhanced on centos7)
 ----
 sudo apt-get install git
