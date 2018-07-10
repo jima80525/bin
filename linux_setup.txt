@@ -85,6 +85,10 @@ scudcloud
     sudo apt-add-repository -y ppa:rael-gc/scudcloud
     sudo apt-get update
     sudo apt-get install scudcloud
+or, better yet, rambox:
+	https://rambox.pro/
+	download package, unzip into home dir, run tool - after set up it will
+	start on boot
 remember the milk
 	note: fedora == intel, ubuntu == AMD
 
