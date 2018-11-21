@@ -11,7 +11,7 @@ http://kb.mozillazine.org/About:config_entries#Browser.
 browser.tabs.loadDivertedInBackground - TRUE
 With the Open Link in New Tab add-on, go to about:config and make sure that the value of "browser.link.open_newwindow" is 3. This has nothing to do with the specific option you use because I'm using the 2nd option, Open a link to a different site in a tab.
 
-To set Bookmarks to open in a new tab, in about:config, set "
+To set Bookmarks toj open in a new tab, in about:config, set "
 browser.tabs.loadBookmarksInTabs - true.
 
 ----
@@ -21,41 +21,53 @@ jima  ALL = NOPASSWD: ALL
 # note that the above line MUST BE THE LAST LINE IN THE FILE
 # http://maestric.com/doc/unix/ubuntu_sudo_without_password
 ----
-(on centos sudo yum install epel-release)
-(on centos get proper version of cmake)
-	sudo yum install glibc.i686
-	then down 3.0.2 version of cmake and install manually.
-
-
-----
+#!/usr/bin/bash
+# run setup_machine.sh
+# FIX SUDOERS file first
+echo "Getting roxterm"
+sudo add-apt-repository ppa:h-realh/roxterm
+sudo apt-get update
 sudo apt-get install roxterm
-	change keyboard shortcuts
-		- remove ctr-alt-t from launch terminal
-		- add it for custom - roxterm
 
-config roxterm
-- select tango colour scheme
-- edit current profile to change size 80x50 and font size to 12
-- preferences->configuration manager - set color scheme to tango
-
-----
+echo "Installing a bunch of stuff"
+sudo apt install sshpass
 sudo apt-get install meld
+sudo apt install fortune
 sudo apt-get install ack-grep
 sudo apt-get install tree
 sudo apt-get install vim-gtk
+# (sudo yum install vim-X11 vim-enhanced on centos7)
 sudo apt-get install cloc
 sudo apt install ncdu
-(sudo yum install vim-X11 vim-enhanced on centos7)
-----
+
+echo "Installing and configuring git"
 sudo apt-get install git
-git config --global user.email jima80525@gmail.com
-git config --global user.email james.anderson@ca.com
+# git config --global user.email jima80525@gmail.com
+git config --global user.email jim.anderson@se.com
 git config --global user.name "Jim Anderson"
 git config --global diff.tool meld
 git config --global difftool.prompt false
 git config --global merge.tool meld
 git config --global merge.conflictstyle diff3
 git config --global mergetool.prompt false
+
+echo "Setting up ssh key"
+ssh-keygen -t rsa -b 4096 -C "jima.coding@gmail.com"
+cat .ssh/id_rsa.pub
+echo " "
+echo "Install that key on github
+----------------
+CONFIGURE ROXTERM
+OLD:
+	change keyboard shortcuts - NO - go to "preferred Applications" and set terminal to roxterm!
+		- remove ctr-alt-t from launch terminal
+		- add it for custom - roxterm
+- go to "preferred Applications" and set terminal to roxterm
+- select tango colour scheme
+- edit current profile to change size 80x50 and font size to 12
+- preferences->configuration manager - set color scheme to tango
+- find setting to let tab shifting wrap
+
 ----
 install ssh key on github
 ssh-keygen -t rsa -b 4096 -C "jima.coding@gmail.com"
@@ -91,6 +103,8 @@ or, better yet, rambox:
 	start on boot
 remember the milk
 	note: fedora == intel, ubuntu == AMD
+Draw.io
+typora
 
 use software manager for:
    spotify
