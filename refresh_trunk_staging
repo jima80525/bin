@@ -1,0 +1,6 @@
+#!/bin/bash
+git checkout trunk
+git pull
+git branch -D trunk_staging
+git checkout trunk_staging
+
