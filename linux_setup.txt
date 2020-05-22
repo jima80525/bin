@@ -20,7 +20,7 @@ sudo visudo  (had to use "pkexec vi /etc/sudoers" last time)
 jima  ALL = NOPASSWD: ALL
 # note that the above line MUST BE THE LAST LINE IN THE FILE
 # http://maestric.com/doc/unix/ubuntu_sudo_without_password
-----
+---- BASH FILE STARTS HERE ----
 #!/usr/bin/bash
 # run setup_machine.sh
 # FIX SUDOERS file first
@@ -43,7 +43,7 @@ sudo apt install ncdu
 echo "Installing and configuring git"
 sudo apt-get install git
 # git config --global user.email jima80525@gmail.com
-git config --global user.email jim.anderson@se.com
+git config --global user.email jim.anderson@pelco.com
 git config --global user.name "Jim Anderson"
 git config --global diff.tool meld
 git config --global difftool.prompt false
@@ -52,19 +52,17 @@ git config --global merge.conflictstyle diff3
 git config --global mergetool.prompt false
 git config --global credential.helper cache
 git config --global credential.helper "cache --timeout=3600"
+echo "Install that key on github
 
 echo "Setting up ssh key"
 ssh-keygen -t rsa -b 4096 -C "jima.coding@gmail.com"
 cat .ssh/id_rsa.pub
 echo " "
 echo "Install that key on github
-----------------
+---- BASH FILE STARTS HERE ----
+
 CONFIGURE ROXTERM
-OLD:
-	change keyboard shortcuts - NO - go to "preferred Applications" and set terminal to roxterm!
-		- remove ctr-alt-t from launch terminal
-		- add it for custom - roxterm
-- go to "preferred Applications" and set terminal to roxterm
+- go to "preferred Applications" and set terminal to roxterm!
 - select tango colour scheme
 - edit current profile to change size 80x50 and font size to 12
 - preferences->configuration manager - set color scheme to tango
@@ -95,23 +93,21 @@ sudo pip install pylint
 sudo pip install pep8
 ----
 Apps to install
-scudcloud
-    sudo apt-add-repository -y ppa:rael-gc/scudcloud
-    sudo apt-get update
-    sudo apt-get install scudcloud
-or, better yet, rambox:
-	https://rambox.pro/
-	download package, unzip into home dir, run tool - after set up it will
-	start on boot
+rambox:
 remember the milk
 	note: fedora == intel, ubuntu == AMD
 Draw.io
 typora
+docker
 
 use software manager for:
+   rambox
    spotify
    dropbox
    clamscan
+   NOT docker
+
+These are no longer in software manager (or are not for ubuntu)
    virtualenv
    virtualenvwrapper
 
@@ -125,23 +121,27 @@ minicom - turn off hardware flow control under serial port settings
 turn off localecho
 ----
 setup nfs booting:
+----
+sudo apt-get install nfs-server
+
 in /export
-sudo ln -s /home/jima/work/__Buildxxx/ 8280
+sudo ln -s /home/jima/work/__Build_9600__/ 9600
 or
-sudo mount --bind /home/jima/work/__Build_8360__ 8360
+sudo mount --bind /home/jima/work/__Build_9600__ 9600
 (NOTE: bind is not persistent across boots)
 
+add to /etc/exports:
+/export/9600 *(rw,sync,no_subtree_check,no_root_squash)
+
+$ /etc/init.d/nfs-kernel-server start
+-------
+set up tftp
+-------
 in /tftpboot
 sudo ln -s /home/jima/work/__Buildxxx/binaries 8280
 sudo apt-get install nfs-server
 sudo apt-get install xinetd tftpd tftp -y
 
-add to /etc/exports:
-/export/8360 *(rw,sync,no_subtree_check,no_root_squash)
-
-
-----
-set up tftp
 sudo vi /etc/xinetd.d/tftp
 service tftp
 {
@@ -166,17 +166,3 @@ and start the TFTP service:
 
 sudo service xinetd stop
 sudo service xinetd start
-
--------
-Full boot file system
-OLDCONF=$(dpkg -l|grep "^rc"|awk '{print $2}')
-CURKERNEL=$(uname -r|sed 's/-*[a-z]//g'|sed 's/-386//g')
-LINUXPKG="linux-(image|headers|ubuntu-modules|restricted-modules)"
-METALINUXPKG="linux-(image|headers|restricted-modules)-(generic|i386|server|common|rt|xen)"
-OLDKERNELS=$(dpkg -l|awk '{print $2}'|grep -E $LINUXPKG |grep -vE $METALINUXPKG|grep -v $CURKERNEL)
-YELLOW="\033[1;33m"
-RED="\033[0;31m"
-ENDCOLOR="\033[0m"
-sudo apt-get purge $OLDKERNELS
-
-
