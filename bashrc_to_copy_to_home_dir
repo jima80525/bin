@@ -50,7 +50,7 @@ alias ...='cd ../..'
 alias ack=ack-grep
 alias vi=gvim
 alias vir='vi --remote-tab'
-alias fileshare='sudo mount -t cifs //fcfs1.pelco.org/Data /mnt/fcfs1 -o rw,user=sesa139183'
+alais fileshare='sudo mount -t cifs //fcfs1.pelco.org/Data /mnt/fcfs1 -o rw,user=jim.anderson'
 
 function logenv { . /home/jima/working/logfiles/venv/bin/activate; export PATH=$PATH:/home/jima/working/logfiles:; }
 function fcbuildv { sshpass -p Pbse:282-1900 ssh omons_team@fcbuild${1}vm.pelco.org; }
@@ -60,17 +60,18 @@ function showtool { git difftool $1^ $1; }
 function showfile { git difftool $1^ $1 -- $2; }
 
 PATH=$PATH:$HOME/bin:/opt/omtools/bin:/sbin
-export PATH=/home/jima/work/gitlab-omons/build-tools/build-commands:$PATH
+export PATH=/home/jima/work/omons/build-tools/build-commands:$PATH
 
 export PATH
 
 # set up env for virtualenv wrapper
-export VIRTUALENV_PYTHON=/usr/bin/python3.7
+export VIRTUALENV_PYTHON=/usr/bin/python3.8
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.8
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/work/python
-if [ -f /usr/share/virtualenvwrapper/virtualenvwrapper.sh ]; then
-# source /usr/local/bin/virtualenvwrapper.sh
-source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+if [ -f /usr/local/bin//virtualenvwrapper.sh ]; then
+source /usr/local/bin/virtualenvwrapper.sh
+# source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 fi
 
 #BRANCH=`git branch | grep "^\*" | cut -f2 -d\ `

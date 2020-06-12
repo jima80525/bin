@@ -38,6 +38,7 @@ sudo apt-get install tree
 sudo apt-get install vim-gtk
 # (sudo yum install vim-X11 vim-enhanced on centos7)
 sudo apt-get install cloc
+sudo apt-get install cifs-utils
 sudo apt install ncdu
 
 echo "Installing and configuring git"
