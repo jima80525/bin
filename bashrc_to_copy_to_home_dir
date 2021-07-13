@@ -50,7 +50,7 @@ alias ...='cd ../..'
 alias ack=ack-grep
 alias vi=gvim
 alias vir='vi --remote-tab'
-alais fileshare='sudo mount -t cifs //fcfs1.pelco.org/Data /mnt/fcfs1 -o rw,user=jim.anderson'
+alias fileshare='sudo mount -t cifs //fcfs1.pelco.org/Data /mnt/fcfs1 -o rw,user=jim.anderson'
 
 function logenv { . /home/jima/working/logfiles/venv/bin/activate; export PATH=$PATH:/home/jima/working/logfiles:; }
 function fcbuildv { sshpass -p Pbse:282-1900 ssh omons_team@fcbuild${1}vm.pelco.org; }

@@ -21,7 +21,7 @@ jima  ALL = NOPASSWD: ALL
 # note that the above line MUST BE THE LAST LINE IN THE FILE
 # http://maestric.com/doc/unix/ubuntu_sudo_without_password
 ---- BASH FILE STARTS HERE ----
-#!/usr/bin/bash
+#!/bin/bash
 # run setup_machine.sh
 # FIX SUDOERS file first
 echo "Getting roxterm"
@@ -30,19 +30,19 @@ sudo apt-get update
 sudo apt-get install roxterm
 
 echo "Installing a bunch of stuff"
-sudo apt install sshpass
-sudo apt-get install meld
-sudo apt install fortune
-sudo apt-get install ack-grep
-sudo apt-get install tree
-sudo apt-get install vim-gtk
+sudo apt install -y sshpass
+sudo apt-get install -y meld
+sudo apt install -y fortune
+sudo apt-get install -y ack-grep
+sudo apt-get install -y tree
+sudo apt-get install -y vim-gtk
 # (sudo yum install vim-X11 vim-enhanced on centos7)
-sudo apt-get install cloc
-sudo apt-get install cifs-utils
-sudo apt install ncdu
+sudo apt-get install -y cloc
+sudo apt-get install -y cifs-utils
+sudo apt install -y ncdu
 
 echo "Installing and configuring git"
-sudo apt-get install git
+sudo apt-get install -y git
 # git config --global user.email jima80525@gmail.com
 git config --global user.email jim.anderson@pelco.com
 git config --global user.name "Jim Anderson"
