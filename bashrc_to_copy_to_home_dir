@@ -96,7 +96,7 @@ if [ -z ${RUN_SCRIPT+x} ]; then
    export PROMPT_COMMAND
 
    # don't do fortune in scripts
-   fortune
+   # fortune
 else
    # PS1='[SCRIPT]\w: '
    PS1='$: '
