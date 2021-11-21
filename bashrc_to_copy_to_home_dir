@@ -64,6 +64,9 @@ export PATH=/home/jima/work/omons/build-tools/build-commands:$PATH
 
 export PATH
 
+# Set up git to use the MSI key
+# export GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa_msi"
+
 # set up env for virtualenv wrapper
 export VIRTUALENV_PYTHON=/usr/bin/python3.8
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.8
@@ -102,3 +105,4 @@ else
 fi
 
 source ~/bin/git-completion.bash
+eval "$(starship init bash)"

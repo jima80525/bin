@@ -1,0 +1,8 @@
+#!/bin/bash
+git branch -D refresh_tmp_branch
+git branch refresh_tmp_branch
+git checkout refresh_tmp_branch
+git pull
+git branch -D $1
+git checkout $1
+
