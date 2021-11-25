@@ -79,6 +79,12 @@ cp bin/bashrc_to_copy_to_home_dir ~/.bashrc
 git clone git@github.com:jima80525/vimconfig.git
 mv vimconfig .vim
 cp .vim/vimrc_move_to_home_dir .vimrc
+----
+sudo apt install python3-pip
+python3 -m pip install virtualenv
+python3 -m pip install virtualenvwrapper
+----
+
 
 git clone git@github.com:jima80525/pyres.git podcasts
 git clone git@github.com:jima80525/audio-book-cde.git
@@ -94,23 +100,24 @@ sudo pip install pylint
 sudo pip install pep8
 ----
 Apps to install
-rambox:
 remember the milk
+	download .deb from rtm site
 	note: fedora == intel, ubuntu == AMD
 Draw.io
+	sudo apt update
+	sudo apt -y install wget curl
+   	curl -s https://api.github.com/repos/jgraph/drawio-desktop/releases/latest | grep browser_download_url | grep '\.deb' | cut -d '"' -f 4 | wget -i -
+	sudo dpkg -i ./draw*
+slack
+	download .deb from site and apt install .deb
 typora
+	download .deb from site and apt install .deb
 docker
+spotify
 
 use software manager for:
-   rambox
-   spotify
    dropbox
    clamscan
-   NOT docker
-
-These are no longer in software manager (or are not for ubuntu)
-   virtualenv
-   virtualenvwrapper
 
 --------------------------------------------------------------------------------
 old stuff
