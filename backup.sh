@@ -6,7 +6,8 @@ DATE_NAME=$(date +'%Y-%m-%d-%H-%M-%S')
 
 #Your dropbox backup location.
 #Modify ‘username’ and ‘server_name’ accordinly
-DROPBOX_BACKUP_DIR_URL="/home/jima/Dropbox/backups/home_laptop/"
+# DROPBOX_BACKUP_DIR_URL="/home/jima/Dropbox/backups/home_laptop/"
+DROPBOX_BACKUP_DIR_URL="/home/jima/tmp/backup"
 
 #The temp location to copy all files
 TEMP_DIR="/tmp"
@@ -20,7 +21,9 @@ TEMP_DOC_BACKUP_DIR_URL="/home/jima/Documents"
 
 PODCAST_DB="/home/jima/podcasts/rss.db"
 
-tar -zcvf $DROPBOX_BACKUP_DIR_URL/$DATE_NAME.tar.gz $TEMP_DOC_BACKUP_DIR_URL $PODCAST_DB
+BOOK_DB="/home/jima/book.json"
+
+tar -zcvf $DROPBOX_BACKUP_DIR_URL/$DATE_NAME.tar.gz $TEMP_DOC_BACKUP_DIR_URL $PODCAST_DB $BOOK_DB
 ################################################################################
 # JHA skipping the "make temp dir and copy" step as I'm only doing one directory
 ################################################################################
