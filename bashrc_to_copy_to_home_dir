@@ -64,16 +64,18 @@ export PATH=/home/jima/work/omons/build-tools/build-commands:$PATH
 
 export PATH
 
-# Set up git to use the MSI key
-# export GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa_msi"
+# forces editor sessions from git to use gvim! 
+export VISUAL="$HOME/bin/vimgit.sh"
 
+export PYTHONPATH="$HOME/work/avig/origcameracontroller/CameraController:$PYTHONPATH"
+export PYTHONPATH
 # set up env for virtualenv wrapper
 export VIRTUALENV_PYTHON=/usr/bin/python3.8
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.8
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/work/python
-if [ -f /usr/local/bin//virtualenvwrapper.sh ]; then
-source /usr/local/bin/virtualenvwrapper.sh
+if [ -f .local/bin//virtualenvwrapper.sh ]; then
+source .local/bin/virtualenvwrapper.sh
 # source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 fi
 
