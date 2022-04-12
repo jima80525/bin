@@ -25,6 +25,9 @@ shopt -s checkwinsize
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
@@ -68,6 +71,11 @@ export PATH
 # forces editor sessions from git to use gvim!
 export VISUAL="$HOME/bin/vimgit.sh"
 
+# Set up git to use the MSI key
+# export GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa_msi"
+
+export PYTHONPATH="$HOME/work/avig/origcameracontroller/CameraController:$PYTHONPATH"
+export PYTHONPATH
 # set up env for virtualenv wrapper
 export VIRTUALENV_PYTHON=/usr/bin/python3.8
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.8
