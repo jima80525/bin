@@ -63,7 +63,11 @@ ssh-keygen -t rsa -b 4096 -C "jima.coding@gmail.com"
 cat .ssh/id_rsa.pub
 echo " "
 echo "Install that key on github
----- BASH FILE STARTS HERE ----
+
+# setup starship (get install steps in here, too!)
+mkdir -p ~/.config
+cp ~/bin/startship.toml ~/.config
+---- BASH FILE ENDS HERE ----
 
 CONFIGURE ROXTERM
 - go to "preferred Applications" and set terminal to roxterm!
