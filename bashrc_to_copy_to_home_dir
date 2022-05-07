@@ -1,45 +1,31 @@
 # .bashrc
-
 # skip this file for non-interactive sessions
 case $- in
     *i*) ;;
       *) return;;
 esac
 
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
+# don't put lines starting with space in the history.  See bash(1) for more options
+HISTCONTROL=ignoredups
 
 # append to the history file, don't overwrite it
 shopt -s histappend
-
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
-fi
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-# Source global definitions
-if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
 fi
 
 # User specific aliases and functions
@@ -52,56 +38,30 @@ alias vi=gvim
 alias vir='vi --remote-tab'
 alias fileshare='sudo mount -t cifs //fcfs1.pelco.org/Data /mnt/fcfs1 -o rw,user=jim.anderson'
 
-function logenv { . /home/jima/working/logfiles/venv/bin/activate; export PATH=$PATH:/home/jima/working/logfiles:; }
-function fcbuildv { sshpass -p Pbse:282-1900 ssh omons_team@fcbuild${1}vm.pelco.org; }
 function fcbuild { sshpass -p Pbse:282-1900 ssh omons_team@fcbuild${1}.pelco.org; }
 function dotstat { git status .; }
 function showtool { git difftool $1^ $1; }
 function showfile { git difftool $1^ $1 -- $2; }
 
-PATH=$PATH:$HOME/bin:/opt/omtools/bin:/sbin
 export PATH=/home/jima/work/omons/build-tools/build-commands:$PATH
-
-export PATH
-
-# Set up git to use the MSI key
-# export GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa_msi"
+# JHA This for virtualenvwrapper, which might not be needed
+export PATH=/home/jima/.local/bin:$PATH
 
 # set up env for virtualenv wrapper
 export VIRTUALENV_PYTHON=/usr/bin/python3.8
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.8
 export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/work/python
-if [ -f /usr/local/bin//virtualenvwrapper.sh ]; then
-source /usr/local/bin/virtualenvwrapper.sh
-# source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+export PROJECT_HOME=$HOME/coding
+if [ -f /home/jima/.local/bin/virtualenvwrapper.sh ]; then
+   source /home/jima/.local/bin/virtualenvwrapper.sh
 fi
 
-#BRANCH=`git branch | grep "^\*" | cut -f2 -d\ `
-# PS1 sets the bash prompt
+## pyenv configs
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
 
-if [ -z ${RUN_SCRIPT+x} ]; then
-   PS1='\t \[\e[1;32m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[1;32m\]\$\[\e[m\] \[\e[1;37m\]'
-   # - \t inserts the time
-   # - \u = user name (1;32 is green)
-   # - \w = cwd with ~ (1,34 is blue)
-   # - \$ = $ (green again)
-   PS1="\[\033[01;31m\]\$(basename '$VIRTUAL_ENV')\[\e[0m\] $PS1"
-   # adds virtual env name if present
-
-   # PROMPT_COMMAND is run before the prompt is displayed - echo -ne  sets the window title
-   #PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME} ${BRANCH}: ${PWD}\007"'
-   # the previous line does user@hostname dir.  following line does just PWD
-   PROMPT_COMMAND='echo -ne "\033]0;${PWD}\007"'
-   export PROMPT_COMMAND
-
-   # don't do fortune in scripts
-   # fortune
-else
-   # PS1='[SCRIPT]\w: '
-   PS1='$: '
-   # PROMPT_COMMAND=' '
-   # export PROMPT_COMMAND
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
 fi
 
 source ~/bin/git-completion.bash
