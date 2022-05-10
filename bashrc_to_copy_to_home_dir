@@ -37,6 +37,7 @@ alias ack=ack-grep
 alias vi=gvim
 alias vir='vi --remote-tab'
 alias fileshare='sudo mount -t cifs //fcfs1.pelco.org/Data /mnt/fcfs1 -o rw,user=jim.anderson'
+alias ub='/home/jima/work/avig/unity/tools/ub'
 
 function fcbuild { sshpass -p Pbse:282-1900 ssh omons_team@fcbuild${1}.pelco.org; }
 function dotstat { git status .; }

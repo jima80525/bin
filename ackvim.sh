@@ -1,6 +1,6 @@
 #!/bin/bash
 # script does ack on a string and opens a new tab in gvim for each file with matches
-/usr/bin/ack -l $* > tt.sh
+~/bin/ack-grep -l $* > tt.sh
 # first prepend the command to open vim.  not pretty
 cat tt.sh | sed -e 's:^:/usr/bin/gvim --servername GVIM --remote-tab :' >> tttemp
 # now we need to work around a bug (?) in gvim where calling --remote-tab several times
