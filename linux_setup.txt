@@ -24,10 +24,10 @@ jima  ALL = NOPASSWD: ALL
 #!/bin/bash
 # run setup_machine.sh
 # FIX SUDOERS file first
-echo "Getting roxterm"
-sudo add-apt-repository ppa:h-realh/roxterm
-sudo apt-get update
-sudo apt-get install roxterm
+# echo "Getting roxterm"
+# sudo add-apt-repository ppa:h-realh/roxterm
+# sudo apt-get update
+# sudo apt-get install roxterm
 
 echo "Installing a bunch of stuff"
 sudo apt install -y sshpass
@@ -69,12 +69,9 @@ mkdir -p ~/.config
 cp ~/bin/startship.toml ~/.config
 ---- BASH FILE ENDS HERE ----
 
-CONFIGURE ROXTERM
-- go to "preferred Applications" and set terminal to roxterm!
-- select tango colour scheme
-- edit current profile to change size 80x50 and font size to 12
-- preferences->configuration manager - set color scheme to tango
-- find setting to let tab shifting wrap
+CONFIGURE TERMINAL
+- right click in text area and show menu bar!
+- edit current profile to change size 80x50 and font size to 14
 
 ----
 install ssh key on github
