@@ -24,10 +24,6 @@ jima  ALL = NOPASSWD: ALL
 #!/bin/bash
 # run setup_machine.sh
 # FIX SUDOERS file first
-# echo "Getting roxterm"
-# sudo add-apt-repository ppa:h-realh/roxterm
-# sudo apt-get update
-# sudo apt-get install roxterm
 
 echo "Installing a bunch of stuff"
 sudo apt install -y sshpass
