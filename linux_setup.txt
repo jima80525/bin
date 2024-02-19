@@ -40,6 +40,8 @@ sudo apt-get install -y vim-gtk
 sudo apt-get install -y cloc
 sudo apt-get install -y cifs-utils
 sudo apt install -y ncdu
+# for ansi2txt
+sudo apt install -y colorized-logs
 
 echo "Installing and configuring git"
 sudo apt-get install -y git
@@ -56,6 +58,10 @@ git config --global credential.helper "cache --timeout=3600"
 git config --global alias.dunk '!git diff | dunk'
 git config --global alias.dunkl '!git diff | dunk | less -R'
 git config --global help.autocorrect 10
+git config --global alias.bb !better-branch.sh
+git config --global rerere.enabled true
+git config --global branch.sort -committerdate
+git maintainance start
 echo    "Install that key on github
 
 echo "Setting up ssh key"
