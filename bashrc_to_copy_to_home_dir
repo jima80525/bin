@@ -1,23 +1,25 @@
 # .bashrc
+
 # skip this file for non-interactive sessions
 case $- in
     *i*) ;;
       *) return;;
 esac
 
-# don't put lines starting with space in the history.  See bash(1) for more options
-HISTCONTROL=ignoredups
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
 
 # append to the history file, don't overwrite it
 shopt -s histappend
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
-
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -26,6 +28,15 @@ if [ -x /usr/bin/dircolors ]; then
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
+fi
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
 fi
 
 # User specific aliases and functions
@@ -39,6 +50,8 @@ alias vir='vi --remote-tab'
 alias fileshare='sudo mount -t cifs //fcfs1.pelco.org/Data /mnt/fcfs1 -o rw,user=jim.anderson'
 alias ub='/home/jima/work/avig/unity/tools/ub'
 
+function logenv { . /home/jima/working/logfiles/venv/bin/activate; export PATH=$PATH:/home/jima/working/logfiles:; }
+function fcbuildv { sshpass -p Pbse:282-1900 ssh omons_team@fcbuild${1}vm.pelco.org; }
 function fcbuild { sshpass -p Pbse:282-1900 ssh omons_team@fcbuild${1}.pelco.org; }
 function dotstat { git status .; }
 function showtool { git difftool $1^ $1; }
@@ -47,6 +60,11 @@ function showfile { git difftool $1^ $1 -- $2; }
 export PATH=/home/jima/work/omons/build-tools/build-commands:$PATH
 # JHA This for virtualenvwrapper, which might not be needed
 export PATH=/home/jima/.local/bin:$PATH
+
+export PATH
+
+# forces editor sessions from git to use gvim! 
+export VISUAL="$HOME/bin/vimgit.sh"
 
 # set up env for virtualenv wrapper
 export VIRTUALENV_PYTHON=/usr/bin/python3.8
