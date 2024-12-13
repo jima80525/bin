@@ -52,19 +52,25 @@ alias vi=gvim
 alias vir='vi --remote-tab'
 alias fileshare='sudo mount -t cifs //fcfs1.pelco.org/Data /mnt/fcfs1 -o rw,user=jim.anderson'
 alias ub='/home/jima/work/avig/unity/tools/ub'
+# alias vm='ssh mgdh46@10.66.4.226'
+alias oldvm='ssh mgdh46@mgdh46-dev-vm-01.am.mot-solutions.com'
+alias vm='ssh mgdh46@mgdh46-dev-01.am.mot-solutions.com'
+alias azlogin='az login --use-device-code && az acr login --name ciedevelop' 
 
+function sshc { ssh -i ~/.ssh/camera_rsa root@$1; }
 function logenv { . /home/jima/working/logfiles/venv/bin/activate; export PATH=$PATH:/home/jima/working/logfiles:; }
 function fcbuildv { sshpass -p Pbse:282-1900 ssh omons_team@fcbuild${1}vm.pelco.org; }
 function fcbuild { sshpass -p Pbse:282-1900 ssh omons_team@fcbuild${1}.pelco.org; }
 function dotstat { git status .; }
 function showtool { git difftool $1^ $1; }
 function showfile { git difftool $1^ $1 -- $2; }
+function acki { ack --ignore-dir=build/ $*; }
 function ackd { rm -f dump && ack $* > /tmp/dump && mv /tmp/dump .; }
-function ackdd { rm -f dump && ack $* > /tmp/dump && mv /tmp/dump . && vim dump; }
+function ackdd { rm -f dump && ack $* > /tmp/dump && mv /tmp/dump . && vir dump; }
 
-export PATH=/home/jima/work/omons/build-tools/build-commands:$PATH
-# JHA This for virtualenvwrapper, which might not be needed
-export PATH=/home/jima/.local/bin:$PATH
+PATH=$PATH:$HOME/bin:/opt/omtools/bin:/sbin
+export PATH=/home/jima/.local/bin:/home/jima/work/omons/build-tools/build-commands:$PATH
+export PATH="$HOME/.poetry/bin:$PATH"
 
 export PATH
 
@@ -80,9 +86,10 @@ export PYTHONPATH
 export VIRTUALENV_PYTHON=/usr/bin/python3.8
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.8
 export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/coding
-if [ -f /home/jima/.local/bin/virtualenvwrapper.sh ]; then
-   source /home/jima/.local/bin/virtualenvwrapper.sh
+export PROJECT_HOME=$HOME/work/python
+if [ -f .local/bin//virtualenvwrapper.sh ]; then
+source .local/bin/virtualenvwrapper.sh
+# source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 fi
 
 ## pyenv configs
