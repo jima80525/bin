@@ -1,25 +1,15 @@
 
-set up firefox - use firefox sync under tools menu, tabmixplus and lastpass
-
-see message in comments on this page:
-https://support.mozilla.org/en-US/questions/1184461
-
-Also see this page:
-http://kb.mozillazine.org/About:config_entries#Browser.
-
-
-browser.tabs.loadDivertedInBackground - TRUE
-With the Open Link in New Tab add-on, go to about:config and make sure that the value of "browser.link.open_newwindow" is 3. This has nothing to do with the specific option you use because I'm using the 2nd option, Open a link to a different site in a tab.
-
-To set Bookmarks toj open in a new tab, in about:config, set "
-browser.tabs.loadBookmarksInTabs - true.
-
 ----
 fix sudoers file
 sudo visudo  (had to use "pkexec vi /etc/sudoers" last time)
 jima  ALL = NOPASSWD: ALL
 # note that the above line MUST BE THE LAST LINE IN THE FILE
 # http://maestric.com/doc/unix/ubuntu_sudo_without_password
+
+# set up cinnamon
+https://computingforgeeks.com/how-to-install-cinnamon-desktop-on-ubuntu/
+
+
 ---- BASH FILE STARTS HERE ----
 #!/bin/bash
 # run setup_machine.sh
@@ -42,7 +32,7 @@ sudo apt install -y colorized-logs
 echo "Installing and configuring git"
 sudo apt-get install -y git
 # git config --global user.email jima80525@gmail.com
-git config --global user.email jim.anderson@pelco.com
+git config --global user.email jim.anderson1@motorolasolutions.com
 git config --global user.name "Jim Anderson"
 git config --global diff.tool meld
 git config --global difftool.prompt false
@@ -58,8 +48,11 @@ git config --global alias.bb !better-branch.sh
 git config --global rerere.enabled true
 git config --global branch.sort -committerdate
 git config --global rebase.autostash true
+git config --global core.excludefiles /home/jima/.gitignore
 git maintainance start
-echo    "Install that key on github
+
+# set up pip - ubuntu doesn't ship with it for some stupid reason
+sudo apt install python3-pip
 
 echo "Setting up ssh key"
 ssh-keygen -t rsa -b 4096 -C "jima.coding@gmail.com"
@@ -69,18 +62,24 @@ echo "Install that key on github
 ---- BASH FILE STARTS HERE ----
 
 # setup starship (get install steps in here, too!)
-mkdir -p ~/.config
-cp ~/bin/startship.toml ~/.config
----- BASH FILE ENDS HERE ----
+1. install nerdfont - picked "EnvyCodeR Nerd Font" https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/EnvyCodeR.zip
+1.1 - download the font
+1.2 - mkdir ~/.local/share/fonts
+1.3 - cp Downloads/EnvyCodeR.zip ~/.local/share/fonts
+1.4 - cd ~/.local/share/fonts
+1.5 - unzip EnvyCodeR.zip
+1.6 - rm EnvyCodeR.zip
+1.7 - fc-cache -fv
+1.8 - set terminal to  use that font :)
+2. Install starship
+2.1 - curl -sS https://starship.rs/install.sh | sh
+2.2 - mkdir -p ~/.config
+2.3 - cp ~/bin/startship.toml ~/.config
 
 CONFIGURE TERMINAL
 - right click in text area and show menu bar!
 - edit current profile to change size 80x50 and font size to 14
 
-----
-install ssh key on github
-ssh-keygen -t rsa -b 4096 -C "jima.coding@gmail.com"
-cat .ssh/id_rsa.pub
 ----
 git clone git@github.com:jima80525/bin.git
 cp bin/bashrc_to_copy_to_home_dir ~/.bashrc
@@ -88,7 +87,47 @@ git clone git@github.com:jima80525/vimconfig.git
 mv vimconfig .vim
 cp .vim/vimrc_move_to_home_dir .vimrc
 ----
-sudo apt install python3-pip
+
+----
+Apps to install
+remember the milk
+	download .deb from rtm site
+	note: fedora == intel, ubuntu == AMD
+Draw.io
+	sudo apt update
+	sudo apt -y install wget curl
+   	curl -s https://api.github.com/repos/jgraph/drawio-desktop/releases/latest | grep browser_download_url | grep '\.deb' | cut -d '"' -f 4 | wget -i -
+	sudo dpkg -i ./draw*
+slack
+x	download .rpt from site
+x	sudo apt install alien
+x	sudo alien <package>
+x	sudo dpkg -i <new deb pkg>
+x	find all channels
+x	Download .deb package (link is a bit hidden) and open - it will install
+x	from there
+	just installed from snap
+		msi - vsa video and external
+		jec
+		rp members
+		rp team
+		pycolorado
+		noco tech?
+Spotify
+	https://www.spotify.com/us/download/linux/
+	Set up keyboard to pause/play spotify
+	custom keymap (settings->keyboard)
+	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+
+typora
+	download .deb from site and apt install .deb
+docker
+
+
+
+------------ Non work stuff ---------------
+
+# JHA TODO - pyenv or other tool?
 python3 -m pip install virtualenv
 python3 -m pip install virtualenvwrapper
 ----
@@ -106,79 +145,3 @@ sudo pip install eyeD3
 sudo pip install flake8
 sudo pip install pylint
 sudo pip install pep8
-----
-Apps to install
-remember the milk
-	download .deb from rtm site
-	note: fedora == intel, ubuntu == AMD
-Draw.io
-	sudo apt update
-	sudo apt -y install wget curl
-   	curl -s https://api.github.com/repos/jgraph/drawio-desktop/releases/latest | grep browser_download_url | grep '\.deb' | cut -d '"' -f 4 | wget -i -
-	sudo dpkg -i ./draw*
-slack
-	download .deb from site and apt install .deb
-typora
-	download .deb from site and apt install .deb
-docker
-spotify
-
-use software manager for:
-   dropbox
-   clamscan
-
---------------------------------------------------------------------------------
-old stuff
---------
-----
-or gtkterm
-minicom - turn off hardware flow control under serial port settings
-115200-8-N-1
-turn off localecho
-----
-setup nfs booting:
-----
-sudo apt-get install nfs-server
-
-in /export
-sudo ln -s /home/jima/work/__Build_9600__/ 9600
-or
-sudo mount --bind /home/jima/work/__Build_9600__ 9600
-(NOTE: bind is not persistent across boots)
-
-add to /etc/exports:
-/export/9600 *(rw,sync,no_subtree_check,no_root_squash)
-
-$ /etc/init.d/nfs-kernel-server start
--------
-set up tftp
--------
-in /tftpboot
-sudo ln -s /home/jima/work/__Buildxxx/binaries 8280
-sudo apt-get install nfs-server
-sudo apt-get install xinetd tftpd tftp -y
-
-sudo vi /etc/xinetd.d/tftp
-service tftp
-{
-   protocol = udp
-   port = 69
-   socket_type = dgram
-   wait = yes
-   user = nobody
-   server = /usr/sbin/in.tftpd
-   server_args = tftpboot -s
-   disable = no
-}
-
-Now let’s change the ownership of the directory:
-
-sudo mkdir /tftpboot
-sudo chown -R nobody:nobody /tftpboot
-# NOTE: on mint18.3 I only did nobody (without second nobody)
-sudo chmod -R 777 /tftpboot
-
-and start the TFTP service:
-
-sudo service xinetd stop
-sudo service xinetd start
