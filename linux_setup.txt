@@ -90,6 +90,8 @@ cp .vim/vimrc_move_to_home_dir .vimrc
 
 ----
 Apps to install
+vscode
+	search for this - might change - using microsoft versions directly
 remember the milk
 	download .deb from rtm site
 	note: fedora == intel, ubuntu == AMD
