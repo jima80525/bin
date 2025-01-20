@@ -1,2 +1,0 @@
-#!/bin/bash
-gvim -f "$@"

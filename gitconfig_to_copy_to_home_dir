@@ -1,23 +1,43 @@
 [user]
 	email = jima80525@gmail.com
+	# email = jim.anderson1@motorolasolutions.com
 	name = Jim Anderson
 [diff]
 	tool = meld
 [difftool]
 	prompt = false
+[merge]
+	tool = meld
+	conflictstyle = diff3
+	renamelimit = 60000
+[mergetool]
+	prompt = false
+[credential]
+	helper = cache --timeout=3600
+[credential "https://github.com"]
+	helper =
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/usr/bin/gh auth git-credential
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
 [alias]
-   ### diffing
-   d = difftool --no-prompt
-   m = mergetool --no-prompt
-   ds = difftool --no-prompt stash HEAD
-   laststash = diff stash@{0}^!
-   ### https://mikewest.org/2011/04/a-quick-git-vim-workflow-tip
-   fshow = ! sh -c 'git show --pretty="format:" --name-only $1 | grep -v "^$" | uniq | sed -e "s#^#`git rev-parse --show-toplevel`/#"' -
-   # http://gitimmersion.com/lab_11.html
-   ### Shorter commands
-   ### Misc
-   hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
-   # Remote branch operations
-   pruneBranches = remote prune origin
-   deleteBranch = push origin --delete
+	dunk = !git diff | dunk
+	dunkl = !git diff | dunk | less -R
+	bb = !better-branch.sh
+	amend = commit --amend --no-edit
+[help]
+	autocorrect = 10
+[rerere]
+	enabled = true
+[branch]
+	sort = -committerdate
+[rebase]
+	autostash = true
+[core]
+	excludesfile = /home/jima/.gitignore
 
