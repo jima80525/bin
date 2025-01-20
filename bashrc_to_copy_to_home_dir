@@ -88,9 +88,18 @@ esac
 
 # direnv functions to give venv and workon commands from:
 # https://treyhunner.com/2024/10/switching-from-virtualenvwrapper-to-direnv-starship-and-uv/
-mkvenv() {
-    local venv_name=${1:-$(basename "$PWD")}
+venv() {
+    local venv_name
     local projects_file="$HOME/.projects"
+    local dir_name=$(basename "$PWD")
+
+    # If there are no arguments or the last argument starts with a dash, use dir_name
+    if [ $# -eq 0 ] || [[ "${!#}" == -* ]]; then
+        venv_name="$dir_name"
+    else
+        venv_name="${!#}"
+        set -- "${@:1:$#-1}"
+    fi
 
     # Check if .envrc already exists
     if [ -f .envrc ]; then
@@ -104,10 +113,12 @@ mkvenv() {
     fi
 
     # Create venv
-    if ! python3 -m venv .venv --prompt "$venv_name"; then
+    if ! uv venv --seed --prompt "$venv_name" "$@" .venv; then
         echo "Error: Failed to create venv" >&2
         return 1
     fi
+
+    source .venv/bin/activate
 
     # Create .envrc
     echo "layout python" > .envrc
@@ -152,3 +163,5 @@ eval "$(starship init bash)"
 # direnv
 eval "$(direnv hook bash)"
 
+eval "$(uv generate-shell-completion bash)"
+eval "$(uvx --generate-shell-completion bash)"
