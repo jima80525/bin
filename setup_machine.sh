@@ -4,6 +4,8 @@
 
 echo "setting up bashrc"
 cp bin/bashrc_to_copy_to_home_dir ~/.bashrc
+cp bin/ackrc_to_copy_to_home_dir ~/.ackrc
+
 
 echo "Installing a bunch of stuff"
 sudo apt install -y sshpass
@@ -31,5 +33,5 @@ echo "Setting up ssh key"
 ssh-keygen -t rsa -b 4096 -C "jima.coding@gmail.com"
 cat .ssh/id_rsa.pub
 echo " "
-echo "Install that key on github
+echo "Install that key on github"
 
