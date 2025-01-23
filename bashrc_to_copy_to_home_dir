@@ -44,19 +44,21 @@ alias la='ls -a'
 alias ll='ls -l'
 alias ..='cd ..'
 alias ...='cd ../..'
+alias azlogin='az login --use-device-code && az acr login --name ciedevelop'
 alias ack=ack-grep
 alias vi=gvim
 alias vir='vi --remote-tab'
-alias ub='/home/jima/work/unity/tools/ub'
+alias fileshare='sudo mount -t cifs //fcfs1.pelco.org/Data /mnt/fcfs1 -o rw,user=jim.anderson'
+alias ub='/home/jima/work/avig/unity/tools/ub'
 alias vm='ssh mgdh46@mgdh46-dev-01.am.mot-solutions.com'
-alias azlogin='az login --use-device-code && az acr login --name ciedevelop'
+# JHA putting this here as this is where I went looking for it
+# buildit tools/ub build t500 | ansi2txt >& dump
 
 function sshc { ssh -i ~/.ssh/camera_rsa root@$1; }
 function fcbuild { sshpass -p Pbse:282-1900 ssh omons_team@fcbuild${1}.pelco.org; }
 function dotstat { git status .; }
 function showtool { git difftool $1^ $1; }
 function showfile { git difftool $1^ $1 -- $2; }
-function acki { ack --ignore-dir=build/ $*; }
 function ackd { rm -f dump && ack $* > /tmp/dump && mv /tmp/dump .; }
 function ackdd { rm -f dump && ack $* > /tmp/dump && mv /tmp/dump . && vir dump; }
 
