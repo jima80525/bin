@@ -21,9 +21,10 @@ TEMP_DOC_BACKUP_DIR_URL="/home/jima/Documents"
 
 PODCAST_DB="/home/jima/podcasts/rss.db"
 
-BOOK_DB="/home/jima/book.json"
+BOOK_DB="/home/jima/books.sqlite"
 
 tar -zcvf $DROPBOX_BACKUP_DIR_URL/$DATE_NAME.tar.gz $TEMP_DOC_BACKUP_DIR_URL $PODCAST_DB $BOOK_DB
+echo "creating $DROPBOX_BACKUP_DIR_URL/$DATE_NAME.tar.gz"
 ################################################################################
 # JHA skipping the "make temp dir and copy" step as I'm only doing one directory
 ################################################################################
