@@ -130,6 +130,12 @@ venv() {
 
     # Allow direnv to immediately activate the virtual environment
     direnv allow
+
+    if [ -f requirements.txt ]; then
+        # Install requirements if requirements.txt exists
+        pip install -r requirements.txt
+    fi
+
 }
 
 workon() {
@@ -159,6 +165,43 @@ workon() {
 
     # Change directories
     cd "$project_dir"
+}
+
+rmvenv() {
+    # Remove a virtual environment
+    local venv_name
+    local projects_file="$HOME/.projects"
+    local dir_name=$(basename "$PWD")
+
+    # If there are no arguments or the last argument starts with a dash, use dir_name
+    if [ $# -eq 0 ] || [[ "${!#}" == -* ]]; then
+        venv_name="$dir_name"
+    else
+        venv_name="${!#}"
+        set -- "${@:1:$#-1}"
+        workon $venv_name
+    fi
+
+    # Check if .envrc already exists
+    if [ -f .envrc ]; then
+        echo "Removing .envrc"
+        rm .envrc
+    fi
+
+    if [ -d .venv ]; then
+        echo "Removing .venv"
+        rm -rf .venv
+    fi
+
+    if [ -d .direnv ]; then
+        echo "Removing .direnv"
+        rm -rf .direnv
+    fi
+
+    if grep -Fq ${venv_name} ${projects_file}; then
+        echo "Removing ${venv_name} from ${projects_file}"
+        sed -i "/^${venv_name}/d" ${projects_file}
+    fi
 }
 
 eval "$(starship init bash)"
