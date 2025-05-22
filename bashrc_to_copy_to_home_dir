@@ -59,6 +59,7 @@ function fcbuild { sshpass -p Pbse:282-1900 ssh omons_team@fcbuild${1}.pelco.org
 function dotstat { git status .; }
 function showtool { git difftool $1^ $1; }
 function showfile { git difftool $1^ $1 -- $2; }
+function acki { ack --ignore-dir=build/ $*; }
 function ackd { rm -f dump && ack $* > /tmp/dump && mv /tmp/dump .; }
 function ackdd { rm -f dump && ack $* > /tmp/dump && mv /tmp/dump . && vir dump; }
 
@@ -109,7 +110,7 @@ venv() {
         return 1
     fi
 
-    if grep -Fq ${venv_name} ${projects_file}; then
+    if grep -Fq "^${venv_name} " ${projects_file}; then
         echo "Error: a project named ${venv_name} already exists" >&2
         return 1
     fi
