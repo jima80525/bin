@@ -134,7 +134,7 @@ venv() {
 
     if [ -f requirements.txt ]; then
         # Install requirements if requirements.txt exists
-        pip install -r requirements.txt
+        uv pip install -r requirements.txt
     fi
 
 }
@@ -205,9 +205,31 @@ rmvenv() {
     fi
 }
 
+_workon_completions()
+{
+  # This little bit of nasty pulls the first word from each line of .projects
+  x=$(awk '{ print $1 }' .projects )
+  local suggestions=($(compgen -W "$x" -- "${COMP_WORDS[1]}"))
+
+  if [ "${#suggestions[@]}" == "1" ]; then
+    # if there's only one match, we remove the command literal
+    # to proceed with the automatic completion of the number
+    local project=$(echo ${suggestions[0]/%\ */})
+    COMPREPLY=("$project")
+  else
+    # more than one suggestions resolved,
+    # respond with the suggestions intact
+    COMPREPLY=("${suggestions[@]}")
+  fi
+  return 0
+}
+
+# complete -o nospace -F _workon_completions workon
+complete -F _workon_completions workon
+
 eval "$(starship init bash)"
-# direnv
 eval "$(direnv hook bash)"
+export DIRENV_LOG_FORMAT=
 
 eval "$(uv generate-shell-completion bash)"
 eval "$(uvx --generate-shell-completion bash)"
