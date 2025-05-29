@@ -116,7 +116,7 @@ venv() {
     fi
 
     # Create venv
-    if ! uv venv --seed --prompt "$venv_name" "$@" .venv; then
+    if ! uv venv --quiet --seed --prompt "$venv_name" "$@" .venv; then
         echo "Error: Failed to create venv" >&2
         return 1
     fi
@@ -125,6 +125,7 @@ venv() {
 
     # Create .envrc
     echo "layout python" > .envrc
+    echo "unset PS1" >> .envrc
 
     # Append project name and directory to projects file
     echo "${venv_name} = ${PWD}" >> $projects_file
@@ -207,8 +208,9 @@ rmvenv() {
 
 _workon_completions()
 {
+  local projects_file="$HOME/.projects"
   # This little bit of nasty pulls the first word from each line of .projects
-  x=$(awk '{ print $1 }' .projects )
+  x=$(awk '{ print $1 }' $projects_file)
   local suggestions=($(compgen -W "$x" -- "${COMP_WORDS[1]}"))
 
   if [ "${#suggestions[@]}" == "1" ]; then

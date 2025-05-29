@@ -2,4 +2,6 @@ layout_python() {
     VIRTUAL_ENV="$(pwd)/.venv"
     PATH_add "$VIRTUAL_ENV/bin"
     export VIRTUAL_ENV
+    # Activate the virtual environment
+    . $VIRTUAL_ENV/bin/activate
 }
